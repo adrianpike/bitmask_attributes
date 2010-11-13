@@ -67,7 +67,7 @@ class BitmaskAttributeGenerator
     
     @base_class.send :define_method, "write_#{mask_name}!" do
       send(field_name + '_will_change!') if respond_to?(field_name + 'will_change!')
-      self.write_attribute(field_name, send(mask_name).to_i)
+      self.send(:write_attribute, field_name, send(mask_name).to_i)
     end
     
     @base_class.send :class_variable_set, "@@#{field_name}", bitmask_attributes
